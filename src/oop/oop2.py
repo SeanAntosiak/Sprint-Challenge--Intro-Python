@@ -3,11 +3,15 @@
 # Also change it so the num_wheels defaults to 4 if not specified when the
 # object is constructed.
 
-class GroundVehicle():
-    def __init__(self, num_wheels):
-        self.num_wheels = num_wheels
 
-    # TODO
+class GroundVehicle():
+    def __init__(self, num_wheels=None):
+        self.num_wheels = num_wheels
+        if self.num_wheels is None:
+            self.num_wheels = 4
+
+    def drive(self):
+        print('vroooom')
 
 
 # Subclass Motorcycle from GroundVehicle.
@@ -17,7 +21,13 @@ class GroundVehicle():
 #
 # Override the drive() method in Motorcycle so that it returns "BRAAAP!!"
 
-# TODO
+class Motorcycle(GroundVehicle):
+    def __init__(self):
+        super().__init__(num_wheels=2)
+
+    def drive(self):
+        print('BRAAAP!!')
+
 
 vehicles = [
     GroundVehicle(),
@@ -29,4 +39,6 @@ vehicles = [
 
 # Go through the vehicles list and print the result of calling drive() on each.
 
-# TODO
+# printing none after every line?? When I do it manually it works though
+for i in vehicles:
+    print(i.drive())
